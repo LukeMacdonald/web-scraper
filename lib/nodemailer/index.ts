@@ -2,13 +2,7 @@
 
 import { EmailContent, EmailProductInfo, NotificationType } from "@/types";
 import nodemailer from "nodemailer";
-const Notification = {
-  WELCOME: "WELCOME",
-  CHANGE_OF_STOCK: "CHANGE_OF_STOCK",
-  LOWEST_STOCK: "LOWEST_STOCK",
-  THRESHOLD_MET: "THRESHOLD_MET",
-  LOWEST_PRICE: "LOWEST_PRICE",
-};
+import { Notification } from "../utils";
 
 export async function generateEmailBody(
   product: EmailProductInfo,

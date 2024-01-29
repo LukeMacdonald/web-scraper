@@ -1,5 +1,6 @@
 import { Product, PriceHistoryItem } from "@/types";
-const Notification = {
+
+export const Notification = {
   WELCOME: "WELCOME",
   CHANGE_OF_STOCK: "CHANGE_OF_STOCK",
   LOWEST_STOCK: "LOWEST_STOCK",

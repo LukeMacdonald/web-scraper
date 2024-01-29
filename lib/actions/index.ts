@@ -96,9 +96,7 @@ export async function addUserEmailToProduct(
   userEmail: string,
 ) {
   try {
-    console.log(productId);
     const product = await Product.findById(productId);
-    console.log(productId);
     if (!product) return;
 
     const userExists = product.users.some(
