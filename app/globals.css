@@ -17,23 +17,23 @@
 
 @layer utilities {
   .btn {
-    @apply py-4 px-4 bg-secondary hover:bg-opacity-70 rounded-[30px] text-white text-lg font-semibold;
+    @apply py-4 px-4 bg-orange-500 hover:bg-opacity-70 rounded-[30px] text-white text-lg font-semibold;
   }
 
   .head-text {
-    @apply mt-4 text-6xl leading-[72px] font-bold tracking-[-1.2px] text-gray-900;
+    @apply mt-4 text-6xl leading-[72px] font-bold tracking-[-1.2px] text-white;
   }
 
   .section-text {
-    @apply text-secondary text-[32px] font-semibold;
+    @apply text-white text-[32px] font-semibold;
   }
 
   .small-text {
-    @apply flex gap-2 text-sm font-medium text-primary;
+    @apply flex gap-2 text-sm font-medium text-white;
   }
 
   .paragraph-text {
-    @apply text-xl leading-[30px] text-gray-600;
+    @apply text-xl leading-[30px] text-white-600;
   }
 
   .hero-carousel {
@@ -66,7 +66,7 @@
   }
 
   .product-image {
-    @apply flex-grow xl:max-w-[50%] max-w-full py-16 border border-[#CDDBFF] rounded-[17px];
+    @apply bg-white flex-grow xl:max-w-[50%] max-w-full py-16 border border-[#CDDBFF] rounded-[17px];
   }
 
   .product-info {
@@ -116,7 +116,7 @@
   }
 
   .nav-logo {
-    @apply font-spaceGrotesk text-[21px] text-secondary font-bold;
+    @apply font-spaceGrotesk text-[21px] text-white font-bold;
   }
 
   /* PRICE INFO */
@@ -134,11 +134,11 @@
   }
 
   .product-card_img {
-    @apply max-h-[250px] object-contain w-full h-full bg-transparent;
+    @apply max-h-[250px] object-contain w-[75%] h-full py-2 bg-white rounded-xl;
   }
 
   .product-title {
-    @apply text-secondary text-xl leading-6 font-semibold truncate;
+    @apply text-white text-xl leading-6 font-semibold truncate;
   }
 
   /* SEARCHBAR INPUT */

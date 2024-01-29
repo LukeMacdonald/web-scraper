@@ -1,6 +1,13 @@
 import { Product, PriceHistoryItem } from "@/types";
-import { THRESHOLD_PERCENTAGE, Notification } from "@/lib/nodemailer";
+const Notification = {
+  WELCOME: "WELCOME",
+  CHANGE_OF_STOCK: "CHANGE_OF_STOCK",
+  LOWEST_STOCK: "LOWEST_STOCK",
+  THRESHOLD_MET: "THRESHOLD_MET",
+  LOWEST_PRICE: "LOWEST_PRICE",
+};
 
+const THRESHOLD_PERCENTAGE = 40;
 // Extracts and returns the price from a list of possible elements.
 export function extractPrice(...elements: any) {
   for (const element of elements) {

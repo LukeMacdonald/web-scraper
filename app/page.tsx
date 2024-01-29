@@ -8,7 +8,7 @@ const Home = async () => {
 
   return (
     <>
-      <section className="px-6 border-2 py-24 ">
+      <section className="px-6 border-1 py-24 ">
         <div className="flex max-xl:flex-col gap-16">
           <div className="flex flex-col justify-center">
             <p className="small-text">
@@ -22,7 +22,7 @@ const Home = async () => {
             </p>
             <h1 className="head-text">
               Unleash the Power of
-              <span className="text-primary"> PriceWise</span>
+              <span className="text-orange-500"> AmazonSaver</span>
             </h1>
             <p className="mt-6">
               Powerful, self-serve product and growth analytics to help you
@@ -45,4 +45,3 @@ const Home = async () => {
   );
 };
 export default Home;
-
