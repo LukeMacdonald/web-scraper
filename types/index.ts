@@ -31,7 +31,8 @@ export type NotificationType =
   | "WELCOME"
   | "CHANGE_OF_STOCK"
   | "LOWEST_PRICE"
-  | "THRESHOLD_MET";
+  | "THRESHOLD_MET"
+  | "LOWEST_STOCK";
 
 export type EmailContent = {
   subject: string;
