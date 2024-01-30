@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import Product from "../models/product.model";
 import { connectToDB } from "../mongoose";
 import { User } from "@/types";
-import { scapeAmazonProduct } from "../scraper";
+import { scrapeAmazonProduct } from "../scraper";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { generateEmailBody, sendEmail } from "../nodemailer";
 
@@ -13,17 +13,17 @@ export async function scrapeAndStoreProduct(productUrl: string) {
   try {
     connectToDB();
 
-    const scrappedProduct = await scapeAmazonProduct(productUrl);
+    const scrappedProduct = await scrapeAmazonProduct(productUrl);
 
     if (!scrappedProduct) return;
 
     let product = scrappedProduct;
 
-    const existProduct = await Product.findOne({ url: scrappedProduct.url });
+    const existingProduct = await Product.findOne({ url: scrappedProduct.url });
 
-    if (existProduct) {
+    if (existingProduct) {
       const updatedPriceHistory: any = [
-        ...existProduct.priceHistory,
+        ...existingProduct.priceHistory,
         { price: scrappedProduct.currentPrice },
       ];
 

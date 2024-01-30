@@ -8,7 +8,7 @@ import {
 } from "@/lib/utils";
 import { connectToDB } from "@/lib/mongoose";
 import Product from "@/lib/models/product.model";
-import { scapeAmazonProduct } from "@/lib/scraper";
+import { scrapeAmazonProduct } from "@/lib/scraper";
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 
 export const maxDuration = 10;
@@ -22,12 +22,11 @@ export async function GET(request: Request) {
     const products = await Product.find({});
 
     if (!products) throw new Error("No product fetched");
-
-    // ======================== 1 SCRAPE LATEST PRODUCT DETAILS & UPDATE DB
+ 
     const updatedProducts = await Promise.all(
       products.map(async (currentProduct) => {
         // Scrape product
-        const scrapedProduct = await scapeAmazonProduct(currentProduct.url);
+        const scrapedProduct = await scrapeAmazonProduct(currentProduct.url);
         if (!scrapedProduct) return;
         console.log(currentProduct);
         const updatedPriceHistory = [
