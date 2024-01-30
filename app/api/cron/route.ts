@@ -13,7 +13,7 @@ import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 
 export const maxDuration = 10;
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = false;
 
 export async function GET(request: Request) {
   try {
@@ -28,9 +28,8 @@ export async function GET(request: Request) {
       products.map(async (currentProduct) => {
         // Scrape product
         const scrapedProduct = await scapeAmazonProduct(currentProduct.url);
-
         if (!scrapedProduct) return;
-
+        console.log(currentProduct);
         const updatedPriceHistory = [
           ...currentProduct.priceHistory,
           {
@@ -46,6 +45,8 @@ export async function GET(request: Request) {
           averagePrice: getAveragePrice(updatedPriceHistory),
         };
 
+        console.log(product);
+
         // Update Products in DB
         const updatedProduct = await Product.findOneAndUpdate(
           {
@@ -53,6 +54,8 @@ export async function GET(request: Request) {
           },
           product,
         );
+
+        console.log(updatedProduct);
 
         // ======================== 2 CHECK EACH PRODUCT'S STATUS & SEND EMAIL ACCORDINGLY
         const emailNotifType = getEmailNotifType(
