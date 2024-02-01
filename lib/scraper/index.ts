@@ -31,6 +31,7 @@ export async function scrapeAmazonProduct(url: string) {
       $("a.size.base.a-color-price"),
       $(".a-button-selected .a-color-base"),
     );
+    console.log(currentPrice === "");
 
     const originalPrice = extractPrice(
       $("#priceblock_ourprice"),
@@ -41,18 +42,31 @@ export async function scrapeAmazonProduct(url: string) {
 
     const outOfStock =
       $("#availability span").text().trim().toLowerCase() ===
-      "currently unavailable";
+        "currently unavailable" || currentPrice === "";
 
     const images =
       $("#imgBlkFront").attr("data-a-dynamic-image") ||
       $("#landingImage").attr("data-a-dynamic-image") ||
       `{}`;
 
+    const reviewCount = $("#averageCustomerReviews .a-size-base")
+      .eq(1)
+      .text()
+      .trim()
+      .replace(/\D/g, "");
+    const stars = $("#averageCustomerReviews .a-size-base").eq(0).text().trim();
+
     const imageUrls = Object.keys(JSON.parse(images));
 
     const currency = extractCurrency($(".a-price-symbol"));
 
-    const discountRate = $(".savingsPercentage").text().replace(/[-%]/g, "");
+    const discountRate =
+      $(".savingsPercentage").text().replace(/[-%]/g, "") ||
+      $(
+        "a-size-double-large.a-color-pric.savingPriceOverrid.aok-align-center.reinventPriceSavingsPercentageMargin.savingsPercentage",
+      )
+        .text()
+        .replace(/[%]/g, "");
     const description = extractDescription($);
     const data = {
       url,
@@ -65,8 +79,8 @@ export async function scrapeAmazonProduct(url: string) {
       priceHistory: [],
       discountRate: Number(discountRate),
       category: "category",
-      reviewsCount: 100,
-      stars: 4.5,
+      reviewsCount: Number(reviewCount),
+      stars: stars,
       isOutOfStock: outOfStock,
       lowestPrice: Number(currentPrice) || Number(originalPrice),
       highestPrice: Number(originalPrice) || Number(currentPrice),
