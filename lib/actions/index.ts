@@ -6,9 +6,11 @@ import { User } from "@/types";
 import { scrapeAmazonProduct } from "../scraper";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { generateEmailBody, sendEmail } from "../nodemailer";
+import { redirect } from "next/navigation";
 
 export async function scrapeAndStoreProduct(productUrl: string) {
   if (!productUrl) return;
+  let newProduct = null;
   try {
     connectToDB();
 
@@ -17,8 +19,6 @@ export async function scrapeAndStoreProduct(productUrl: string) {
     if (!scrappedProduct) return;
 
     let product = scrappedProduct;
-
-    console.log(product);
 
     const existingProduct = await Product.findOne({ url: scrappedProduct.url });
 
@@ -35,10 +35,8 @@ export async function scrapeAndStoreProduct(productUrl: string) {
         highestPrice: getHighestPrice(updatedPriceHistory),
         averagePrice: getAveragePrice(updatedPriceHistory),
       };
-      console.log(product);
-      console.log(scrappedProduct);
     }
-    const newProduct = await Product.findOneAndUpdate(
+    newProduct = await Product.findOneAndUpdate(
       { url: scrappedProduct.url },
       product,
       { upsert: true, new: true },
@@ -48,6 +46,7 @@ export async function scrapeAndStoreProduct(productUrl: string) {
   } catch (error: any) {
     throw new Error(`Failed to create/update product: ${error.message}`);
   }
+  redirect(`/products/${newProduct._id}`);
 }
 
 export async function getProductById(productId: string) {

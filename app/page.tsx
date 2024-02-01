@@ -35,7 +35,7 @@ const Home = async () => {
           initial={{ y: 100, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="z-20 pl-56 pt-96 pb-44 xl:pl-20 lg:pl-10 md:pl-0 flex items-center justify-center w-full space-x-5"
+          className="z-20 pl-56 pt-72 pb-44 xl:pl-20 lg:pl-10 md:pl-0 flex items-center justify-center w-full space-x-5"
         >
           <Searchbar />
           {/* <input className="search-input" /> */}

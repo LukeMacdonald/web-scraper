@@ -38,7 +38,15 @@ export async function scrapeAmazonProduct(url: string) {
       $("#priceblock_dealprice"),
       $(".a-size-base.a-color-price"),
     );
+    const container = $("#wayfinding-breadcrumbs_container");
+    console.log("container" + container);
+    const mainCategory = container.find("a").first().text().trim();
+    const subCategory = container.find("a").eq(1).text().trim();
 
+    const categoryText =
+      mainCategory !== "" && subCategory !== ""
+        ? `${mainCategory} (${subCategory})`
+        : "";
     const outOfStock =
       $("#availability span").text().trim().toLowerCase() ===
         "currently unavailable" || currentPrice === "";
@@ -77,7 +85,7 @@ export async function scrapeAmazonProduct(url: string) {
       originalPrice: Number(originalPrice) || Number(currentPrice),
       priceHistory: [],
       discountRate: Number(discountRate),
-      category: "category",
+      category: categoryText,
       reviewsCount: Number(reviewCount),
       stars: stars,
       isOutOfStock: outOfStock,
@@ -85,8 +93,6 @@ export async function scrapeAmazonProduct(url: string) {
       highestPrice: Number(originalPrice) || Number(currentPrice),
       averagePrice: Number(currentPrice) || Number(originalPrice),
     };
-
-    console.log(data);
 
     return data;
   } catch (error: any) {

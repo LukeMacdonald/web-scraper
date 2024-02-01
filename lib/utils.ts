@@ -13,19 +13,14 @@ const THRESHOLD_PERCENTAGE = 40;
 export function extractPrice(...elements: any) {
   for (const element of elements) {
     const priceText = element.text().trim();
-    console.log(priceText);
     if (priceText) {
       const cleanPrice = priceText.replace(/[^\d.]/g, "");
-
-      console.log(cleanPrice);
 
       let firstPrice;
 
       if (cleanPrice) {
         firstPrice = cleanPrice.match(/\d+\.\d{2}/)?.[0];
       }
-
-      console.log(firstPrice);
 
       return firstPrice || cleanPrice;
     }

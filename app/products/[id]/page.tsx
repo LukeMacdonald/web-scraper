@@ -16,8 +16,6 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 
   if (!product) redirect("/");
 
-  console.log(product);
-
   const similarProducts = await getSimilarProducts(id);
 
   return (
@@ -38,10 +36,13 @@ const ProductDetails = async ({ params: { id } }: Props) => {
               <p className="text-[28px] text-white font-semibold">
                 {product.title}
               </p>
+              <p className="text-gray-400 font-semibold text-lg">
+                {product.category}
+              </p>
               <Link
                 href={product.url}
                 target="_blank"
-                className="text-base text-white opacity-50"
+                className="text-base text-white opacity-75 hover:underline"
               >
                 Visit Product
               </Link>
