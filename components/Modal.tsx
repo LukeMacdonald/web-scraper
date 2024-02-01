@@ -31,7 +31,7 @@ const Modal = ({ productId }: Props) => {
 
   return (
     <>
-      <button type="button" className="btn" onClick={openModal}>
+      <button type="button" className="btn self-center" onClick={openModal}>
         Track
       </button>
 

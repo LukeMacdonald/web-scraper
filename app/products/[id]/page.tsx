@@ -16,17 +16,19 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 
   if (!product) redirect("/");
 
+  console.log(product);
+
   const similarProducts = await getSimilarProducts(id);
 
   return (
-    <div className="product-container">
-      <div className="flex gap-28 xl:flex-row flex-col">
+    <div className="product-container w-[75%] mx-auto">
+      <div className="flex gap-28 flex-col px-14 justify-center items-center">
         <div className="product-image">
           <Image
             src={product.image}
             alt={product.title}
-            width={380}
-            height={200}
+            width={280}
+            height={100}
             className="mx-auto"
           />
         </div>
@@ -44,40 +46,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
                 Visit Product
               </Link>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="product-hearts">
-                <Image
-                  src="/assets/icons/red-heart.svg"
-                  alt="heart"
-                  width={20}
-                  height={20}
-                />
-
-                <p className="text-base font-semibold text-[#D46F77]">
-                  {product.reviewsCount}
-                </p>
-              </div>
-
-              <div className="p-2 bg-white-200 rounded-10">
-                <Image
-                  src="/assets/icons/bookmark.svg"
-                  alt="bookmark"
-                  width={20}
-                  height={20}
-                />
-              </div>
-
-              <div className="p-2 bg-white-200 rounded-10">
-                <Image
-                  src="/assets/icons/share.svg"
-                  alt="share"
-                  width={20}
-                  height={20}
-                />
-              </div>
-            </div>
           </div>
-
           <div className="product-info">
             <div className="flex flex-col gap-2">
               <p className="text-[34px] text-white font-bold">
@@ -88,7 +57,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2 pt-2">
               <div className="flex gap-3">
                 <div className="product-stars">
                   <Image
@@ -115,10 +84,10 @@ const ProductDetails = async ({ params: { id } }: Props) => {
                 </div>
               </div>
 
-              <p className="text-sm text-white opacity-50">
-                <span className="text-primary-green font-semibold">93% </span>{" "}
-                of buyers have recommeded this.
-              </p>
+              {/* <p className="text-sm text-white opacity-50"> */}
+              {/*   <span className="text-primary-green font-semibold">93% </span>{" "} */}
+              {/*   of buyers have recommeded this. */}
+              {/* </p> */}
             </div>
           </div>
 
@@ -177,8 +146,9 @@ const ProductDetails = async ({ params: { id } }: Props) => {
       </div>
 
       {similarProducts && similarProducts?.length > 0 && (
-        <div className="py-14 flex flex-col gap-2 w-full">
+        <div className="py-14 flex flex-col gap-2 w-full bg-white px-4 rounded-md">
           <p className="section-text">Similar Products</p>
+          <hr className="mt-2" />
 
           <div className="flex flex-wrap gap-10 mt-7 w-full">
             {similarProducts.map((product) => (

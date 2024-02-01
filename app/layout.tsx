@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-
 const inter = Inter({ subsets: ["latin"] });
 
 const spaceGrotesk = Space_Grotesk({
@@ -22,8 +21,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="max-w-10x1 mx-auto bg-gray-800 text-white">
+      <body className={spaceGrotesk.className}>
+        <main className="bg-gray-800 text-white">
           <Navbar />
           {children}
         </main>
