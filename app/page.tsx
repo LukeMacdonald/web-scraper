@@ -35,7 +35,7 @@ const Home = async () => {
           initial={{ y: 100, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="z-20 pl-56 pt-96 pb-44 xl:pl-20 lg:pl-10 md:pl-0 flex items-center justify-center w-full space-x-5"
+          className="z-20 pl-56 pt-72 pb-44 xl:pl-20 lg:pl-10 md:pl-0 flex items-center justify-center w-full space-x-5"
         >
           <Searchbar />
           {/* <input className="search-input" /> */}
@@ -44,7 +44,7 @@ const Home = async () => {
         <div className="w-full bg-white p-5 rounded-md mx-auto">
           <h1 className="text-3xl text-black font-semibold pt-5">Trending</h1>
           <hr className="mt-2" />
-          <div className="w-full rounded-sm px-5 mx-auto flex flex-wrap gap-x-8 gap-y-18">
+          <div className="w-full rounded-sm px-5 mx-auto flex flex-wrap gap-x-5 gap-y-10">
             {allProducts?.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}

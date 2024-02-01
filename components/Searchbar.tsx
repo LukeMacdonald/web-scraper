@@ -52,7 +52,7 @@ const Searchbar = () => {
       />
       <button
         type="submit"
-        className="search-btn"
+        className="searchbar-btn"
         disabled={searchPrompt === ""}
       >
         {isLoading ? "Searching..." : "Search"}
